@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Money Transfer — Beneficiary List</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body{
+      background: linear-gradient(135deg, #ffffff, #e7f0ff 60%);
+      font-family: "Inter", sans-serif;
+      padding-top:90px;
+      color:#1a1a1a;
+    }
+
+    /* NAVBAR */
+    .navbar{
+      background:white !important;
+      border-bottom:1px solid #e0e6f0;
+    }
+    .navbar-brand{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      font-weight:700;
+      color:#0a3cff !important;
+    }
+    .brand-logo{
+      width:42px;
+      height:42px;
+      background:linear-gradient(135deg,#4da6ff,#003dff);
+      border-radius:12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+      font-weight:700;
+    }
+
+    .page-wrapper{
+      max-width:1100px;
+      margin:auto;
+      padding:15px;
+    }
+
+    .page-title{
+      font-size:1.8rem;
+      font-weight:700;
+      color:#0039cc;
+    }
+
+    /* Beneficiary Card */
+    .beneficiary-card{
+      background:white;
+      border-radius:18px;
+      padding:22px;
+      border:1px solid #e2e8f5;
+      box-shadow:0 8px 28px rgba(0,0,0,0.08);
+      transition:.3s;
+      height: 100%;
+    }
+    .beneficiary-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 12px 32px rgba(0,0,0,0.12);
+    }
+
+    .btn-add{
+      background: linear-gradient(90deg,#0066ff,#0047e3);
+      color:white;
+      border:none;
+      padding:10px 22px;
+      border-radius:12px;
+      font-weight:600;
+      white-space:nowrap;
+    }
+
+    /* Modal */
+    .modal-content{
+      border-radius:18px;
+      padding:10px 5px;
+      border:1px solid #e4e9f4;
+      box-shadow:0 10px 40px rgba(0,0,0,0.15);
+    }
+
+    .form-control{
+      background:#f7f9fc;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #d4dcec;
+    }
+
+    .btn-submit{
+      background: linear-gradient(90deg,#0066ff,#0047e3);
+      border:none;
+      color:white;
+      padding:12px;
+      border-radius:10px;
+      font-weight:600;
+      width:100%;
+    }
+
+    /* Mobile responsive fixes */
+    @media(max-width: 768px){
+      .page-title{
+        font-size:1.5rem;
+      }
+      .btn-add{
+        width:100%;
+        margin-top:10px;
+      }
+      .d-flex-responsive{
+        flex-direction:column;
+        align-items:flex-start !important;
+        gap:10px;
+      }
+      .beneficiary-card{
+        padding:18px;
+      }
+    }
+
+    @media(max-width: 480px){
+      .page-title{
+        font-size:1.35rem;
+      }
+      .beneficiary-card h5{
+        font-size:1rem;
+      }
+      .navbar-brand{
+        font-size:1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <div class="brand-logo">MT</div>
+      Money Transfer
+    </a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<div class="page-wrapper">
+
+  <div class="d-flex justify-content-between align-items-center mb-4 d-flex-responsive">
+    <h2 class="page-title">Beneficiary List</h2>
+
+    <button class="btn-add" data-bs-toggle="modal" data-bs-target="#addBeneficiary">
+      ➕ Add Beneficiary
+    </button>
+  </div>
+
+  <!-- Beneficiary Cards -->
+  <div class="row g-4">
+
+    <div class="col-md-6 col-lg-4">
+      <div class="beneficiary-card">
+        <h5 class="mb-1">Rahul Verma</h5>
+        <small class="text-muted">SBI Bank • 1234567890</small>
+
+        <div class="d-flex justify-content-end mt-3">
+          <button class="btn btn-sm btn-outline-primary">Transfer</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="beneficiary-card">
+        <h5 class="mb-1">Amit Kumar</h5>
+        <small class="text-muted">HDFC Bank • 8899776655</small>
+
+        <div class="d-flex justify-content-end mt-3">
+          <button class="btn btn-sm btn-outline-primary">Transfer</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ADD BENEFICIARY POPUP -->
+<div class="modal fade" id="addBeneficiary" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold text-primary">Add New Beneficiary</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body px-4">
+
+        <label class="form-label">Beneficiary Name</label>
+        <input type="text" class="form-control mb-3" placeholder="Enter name">
+
+        <label class="form-label">Account Number</label>
+        <input type="text" class="form-control mb-3" placeholder="Enter account number">
+
+        <label class="form-label">IFSC Code</label>
+        <input type="text" class="form-control mb-3" placeholder="Enter IFSC">
+
+        <label class="form-label">Bank Name</label>
+        <select class="form-control mb-3">
+          <option>Select Bank</option>
+          <option>State Bank of India</option>
+          <option>HDFC Bank</option>
+          <option>ICICI Bank</option>
+          <option>Punjab National Bank</option>
+        </select>
+
+        <button class="btn-submit">Add Beneficiary</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
